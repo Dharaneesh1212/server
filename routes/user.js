@@ -38,7 +38,12 @@ router.post("/signin", async (req, res) => {
   const token = jwt.sign({ username: user.username }, process.env.KEY, {
     expiresIn: "1h",
   });
-  res.cookie("token", token, { httpOnly: true, maxAge: 360000 });
+  res.cookie("token", token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+    maxAge: 360000,
+  });
   return res.json({ status: true, message: "login successfully" });
 });
 
@@ -100,9 +105,9 @@ const verifyUser = async (req, res, next) => {
     if (!token) {
       return res.json({ status: false, message: "no token" });
     }
-    jwt.verify(token, process.env.KEY,(error,user)=>{
-req.user=user
-next();
+    jwt.verify(token, process.env.KEY, (error, user) => {
+      req.user = user;
+      next();
     });
   } catch (err) {
     return res.json(err);
@@ -111,14 +116,12 @@ next();
 
 router.get("/verify", verifyUser, (req, res) => {
   // console.log(req);
-  return res.json({ status: true, message: "authorized",user:req.user });
+  return res.json({ status: true, message: "authorized", user: req.user });
 });
-
 
 router.get("/logout", (req, res) => {
   res.clearCookie("token");
   return res.json({ status: true });
 });
-
 
 export { router as UserRouter };

@@ -16,7 +16,7 @@ const app = express();
 // Middleware to handle CORS and cookies
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://mushy-dress-bull.cyclic.app/"],
+    origin: ["http://localhost:5173", "https://loquacious-cendol-f126cc.netlify.app/"],
     credentials: true,
   })
 );

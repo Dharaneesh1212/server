@@ -9,23 +9,23 @@ import {
 const router = express.Router();
 
 //create blog
-//POST => http://localhost:5000/api/v1/blog
+//POST => https://mushy-dress-bull.cyclic.app/api/v1/blog
 router.post("/", createBlogs);
 
 //getAllBlogs
-//GET => http://localhost:5000/api/v1/blog
+//GET => https://mushy-dress-bull.cyclic.app/api/v1/blog
 router.get("/", getAllBlogs);
 
 //getBlogById
-//GET => http://localhost:5000/api/v1/blog/:id
+//GET => https://mushy-dress-bull.cyclic.app/api/v1/blog/:id
 router.get("/:id", getBlogById);
 
 //updateBlogById
-//PUT => http://localhost:5000/api/v1/blog/:id
+//PUT => https://mushy-dress-bull.cyclic.app/api/v1/blog/:id
 router.put("/:id", updateBlogById);
 
 //deleteBlogById
-//DELETE => http://localhost:5000/api/v1/blog/:id
+//DELETE => https://mushy-dress-bull.cyclic.app/api/v1/blog/:id
 router.delete("/:id", deleteBlogById);
 
 export default router;

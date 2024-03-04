@@ -12,7 +12,7 @@ import Blog from "../models/blogModels.js";
 
 export const createBlogs = async (req, res) => {
   try {
-    const blogs = await Blog.create(req.body);
+    const blogs = await new Blog(req.body).save();
     res.status(201).json({ success: true, data: blogs });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
